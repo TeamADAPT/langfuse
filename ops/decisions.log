@@ -1,0 +1,17 @@
+# Decisions Log
+
+## 2026-06-28 06:39:59 — Codex
+Decision recorded: Use per-command Git author identity for this commit instead of writing global Git config.
+
+Files touched:
+- `ops/operations_history.md`
+- `ops/decisions.log`
+
+## 2026-06-28 06:38:57 — Codex
+Decision recorded: Follow plan-first workflow for production systemd install; no package, service, database, proxy, or secret changes will be made until the implementation plan is approved.
+
+Files touched:
+- `ops/operations_history.md`
+- `ops/decisions.log`
+- `ops/in_progress/langfuse-production-systemd-install/task.md`
+- `plans/langfuse-production-systemd-install.md`
