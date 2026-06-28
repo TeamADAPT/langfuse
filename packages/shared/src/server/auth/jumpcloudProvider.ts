@@ -33,7 +33,7 @@ export function JumpCloudProvider<P extends JumpCloudProfile>(
         name: name || profile.email,
         email: profile.email,
         image: null,
-      };
+      } as any;
     },
     ...options,
   };

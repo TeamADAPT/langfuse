@@ -28,7 +28,7 @@ export function CustomSSOProvider<P extends CustomSSOUser>(
         name: profile[CUSTOM_NAME_CLAIM],
         email: profile[CUSTOM_EMAIL_CLAIM],
         image: null,
-      };
+      } as any;
     },
     options,
   };

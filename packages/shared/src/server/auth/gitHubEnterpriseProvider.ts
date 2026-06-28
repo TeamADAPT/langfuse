@@ -49,7 +49,7 @@ export function GitHubEnterpriseProvider<P extends GithubProfile>(
         name: profile.name ?? profile.login,
         email: profile.email,
         image: profile.avatar_url,
-      };
+      } as any;
     },
     style: {
       logo: "https://raw.githubusercontent.com/nextauthjs/next-auth/main/packages/next-auth/provider-logos/github.svg",

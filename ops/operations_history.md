@@ -1,5 +1,30 @@
 # Operations History
 
+## 2026-06-28 07:42:14 — Codex
+Completed the live Langfuse systemd/nginx/Cloudflare Tunnel installation path. Built web/worker successfully, applied Postgres and ClickHouse migrations, created dedicated Redis on `127.0.0.1:6380`, moved Langfuse runtime DB variables into `/adapt/secrets/langfuse.env`, configured nginx for `langfuse.adaptdev.ai`, created Cloudflare Tunnel `langfuse-adaptdev-ai`, created proxied DNS CNAME `langfuse.adaptdev.ai`, and installed `langfuse-cloudflared.service`. Live receipts: public HTTPS health returned `200 OK` with Langfuse `3.201.1`; Cloudflare Tunnel status is healthy with 4 connections; Postgres has 1 user, 1 organization, 1 project, and 1 API key; ClickHouse HTTP query returned `1`; signup API returned `422 {"message":"Sign up is disabled."}`. R2 remains blocked by Cloudflare API error `10042` until R2 is enabled in the dashboard.
+
+Files touched:
+- `/adapt/secrets/.env`
+- `/adapt/secrets/db.env`
+- `/adapt/secrets/langfuse.env`
+- `/adapt/secrets/langfuse-cloudflared.token`
+- `/etc/systemd/system/langfuse-migrate.service`
+- `/etc/systemd/system/langfuse-web.service`
+- `/etc/systemd/system/langfuse-worker.service`
+- `/etc/systemd/system/langfuse-redis.service`
+- `/etc/systemd/system/langfuse-cloudflared.service`
+- `/etc/systemd/system/langfuse.target`
+- `/etc/redis/redis-langfuse.conf`
+- `/etc/nginx/sites-available/langfuse`
+- `/etc/nginx/sites-enabled/langfuse`
+- `/etc/nginx/sites-enabled/default`
+- `packages/shared/src/server/auth/customSsoProvider.ts`
+- `packages/shared/src/server/auth/gitHubEnterpriseProvider.ts`
+- `packages/shared/src/server/auth/jumpcloudProvider.ts`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+- `ops/in_progress/langfuse-production-systemd-install/task.md`
+
 ## 2026-06-28 07:15:23 — Codex
 Installed Node.js 24.18.0, nginx 1.24.0, workspace dependencies, and `/usr/local/bin/migrate` with ClickHouse support. Attempted R2 verification and received Cloudflare API error `10042` indicating R2 must be enabled in the Cloudflare dashboard. Attempted web build; raw checkout Turbopack resolution required a local `web/packages -> ../packages` shim, added as an ignored artifact.
 

@@ -1,5 +1,34 @@
 # Decisions Log
 
+## 2026-06-28 07:42:14 — Codex
+Decision recorded: Use nginx plus a remotely managed Cloudflare Tunnel for `langfuse.adaptdev.ai` because no local origin certificate/key was present. Use a custom `langfuse-cloudflared.service` with `--token-file` so the tunnel token is not exposed in process arguments. Use a dedicated Redis service on `127.0.0.1:6380` and `REDIS_CONNECTION_STRING` to avoid the existing Dragonfly service on `6379` and Langfuse's missing-Redis-auth coercion path. Keep R2 configured in Langfuse env but mark blob verification blocked by Cloudflare account state until R2 is enabled.
+
+Files touched:
+- `/adapt/secrets/langfuse.env`
+- `/adapt/secrets/langfuse-cloudflared.token`
+- `/etc/systemd/system/langfuse-web.service`
+- `/etc/systemd/system/langfuse-worker.service`
+- `/etc/systemd/system/langfuse-redis.service`
+- `/etc/systemd/system/langfuse-cloudflared.service`
+- `/etc/redis/redis-langfuse.conf`
+- `/etc/nginx/sites-available/langfuse`
+- `/etc/nginx/sites-enabled/langfuse`
+- `/etc/nginx/sites-enabled/default`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+- `ops/in_progress/langfuse-production-systemd-install/task.md`
+
+## 2026-06-28 07:24:51 — Codex
+Decision recorded: Patch the three NextAuth provider profile return objects with a narrow `as any` cast to keep the existing runtime object shape while satisfying the web production build's local NextAuth `User` type augmentation.
+
+Files touched:
+- `packages/shared/src/server/auth/customSsoProvider.ts`
+- `packages/shared/src/server/auth/gitHubEnterpriseProvider.ts`
+- `packages/shared/src/server/auth/jumpcloudProvider.ts`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+- `ops/in_progress/langfuse-production-systemd-install/task.md`
+
 ## 2026-06-28 07:15:23 — Codex
 Decision recorded: Keep the raw-checkout Turbopack layout shim `web/packages -> ../packages` as an ignored local artifact instead of changing production source resolution. R2 bucket creation remains blocked by Cloudflare account state until R2 is enabled in the dashboard.
 
