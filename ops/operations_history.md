@@ -1,5 +1,20 @@
 # Operations History
 
+## 2026-06-28 08:36:30 — Codex
+Switched Langfuse blob storage from Cloudflare R2 to local MinIO because R2 remains blocked by Cloudflare account error `10042`. Created MinIO bucket `langfuse`, created a dedicated MinIO user `langfuse` with bucket-scoped read/write policy, updated Langfuse S3 event/media env keys to `http://127.0.0.1:9100` with path-style access, restarted `langfuse-web.service` and `langfuse-worker.service`, and verified live ingestion. Receipt event `minio-receipt-20260628083439-4e54a48a` returned ingestion `207` with success, produced MinIO object `lf/langfuse/events/proj-0f8189d91512bdaa9018aabd/trace/minio-receipt-20260628083439-4e54a48a/minio-receipt-20260628083439-4e54a48a-event.json`, and appeared in ClickHouse as `MinIO receipt trace`. Wrote operator docs under `/adapt/platform/novaops/novamonitor/langfuse/docs`.
+
+Files touched:
+- `/adapt/secrets/.env`
+- `/adapt/secrets/db.env`
+- `/adapt/secrets/.env.bak-minio-*`
+- `/adapt/secrets/db.env.bak-langfuse-minio-*`
+- `/var/lib/minio/data`
+- `/adapt/platform/novaops/novamonitor/langfuse/docs/answer.md`
+- `/adapt/platform/novaops/novamonitor/langfuse/docs/admin_guide.md`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+- `ops/in_progress/langfuse-production-systemd-install/task.md`
+
 ## 2026-06-28 07:42:14 — Codex
 Completed the live Langfuse systemd/nginx/Cloudflare Tunnel installation path. Built web/worker successfully, applied Postgres and ClickHouse migrations, created dedicated Redis on `127.0.0.1:6380`, moved Langfuse runtime DB variables into `/adapt/secrets/langfuse.env`, configured nginx for `langfuse.adaptdev.ai`, created Cloudflare Tunnel `langfuse-adaptdev-ai`, created proxied DNS CNAME `langfuse.adaptdev.ai`, and installed `langfuse-cloudflared.service`. Live receipts: public HTTPS health returned `200 OK` with Langfuse `3.201.1`; Cloudflare Tunnel status is healthy with 4 connections; Postgres has 1 user, 1 organization, 1 project, and 1 API key; ClickHouse HTTP query returned `1`; signup API returned `422 {"message":"Sign up is disabled."}`. R2 remains blocked by Cloudflare API error `10042` until R2 is enabled in the dashboard.
 

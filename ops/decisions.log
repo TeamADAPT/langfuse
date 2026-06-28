@@ -1,5 +1,18 @@
 # Decisions Log
 
+## 2026-06-28 08:36:30 — Codex
+Decision recorded: Use local MinIO as the active Langfuse object store while Cloudflare R2 is unavailable. Use a dedicated bucket `langfuse` and dedicated MinIO user `langfuse` instead of MinIO root credentials. Keep the endpoint loopback-only at `http://127.0.0.1:9100`, set S3 path-style mode, and document admin operations in `/adapt/platform/novaops/novamonitor/langfuse/docs`.
+
+Files touched:
+- `/adapt/secrets/.env`
+- `/adapt/secrets/db.env`
+- `/var/lib/minio/data`
+- `/adapt/platform/novaops/novamonitor/langfuse/docs/answer.md`
+- `/adapt/platform/novaops/novamonitor/langfuse/docs/admin_guide.md`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+- `ops/in_progress/langfuse-production-systemd-install/task.md`
+
 ## 2026-06-28 07:42:14 — Codex
 Decision recorded: Use nginx plus a remotely managed Cloudflare Tunnel for `langfuse.adaptdev.ai` because no local origin certificate/key was present. Use a custom `langfuse-cloudflared.service` with `--token-file` so the tunnel token is not exposed in process arguments. Use a dedicated Redis service on `127.0.0.1:6380` and `REDIS_CONNECTION_STRING` to avoid the existing Dragonfly service on `6379` and Langfuse's missing-Redis-auth coercion path. Keep R2 configured in Langfuse env but mark blob verification blocked by Cloudflare account state until R2 is enabled.
 

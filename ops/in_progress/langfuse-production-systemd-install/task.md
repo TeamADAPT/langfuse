@@ -22,5 +22,8 @@ Current status:
 - Cloudflare Tunnel `langfuse-adaptdev-ai` is healthy with 4 connections and proxied DNS CNAME `langfuse.adaptdev.ai`.
 - Signup-disabled receipt: `POST /api/auth/signup` returned `422 {"message":"Sign up is disabled."}`.
 - Database initialization receipt: Postgres has 1 user, 1 organization, 1 project, and 1 API key; ClickHouse HTTP query returned `1`.
-- R2 verification is blocked by Cloudflare API error `10042` until R2 is enabled for the account.
+- MinIO is the active object storage backend while R2 is blocked. Bucket `langfuse`, event prefix `events/`, media prefix `media/`, endpoint `http://127.0.0.1:9100`, path-style mode enabled.
+- Live MinIO ingestion receipt: `POST /api/public/ingestion` returned `207` with success for `minio-receipt-20260628083439-4e54a48a-event`; object exists at `lf/langfuse/events/proj-0f8189d91512bdaa9018aabd/trace/minio-receipt-20260628083439-4e54a48a/minio-receipt-20260628083439-4e54a48a-event.json`; ClickHouse trace exists as `MinIO receipt trace`.
+- Admin docs written to `/adapt/platform/novaops/novamonitor/langfuse/docs/answer.md` and `/adapt/platform/novaops/novamonitor/langfuse/docs/admin_guide.md`.
+- R2 verification remains blocked by Cloudflare API error `10042` until R2 is enabled for the account.
 - Local Turbopack build shim `web/packages -> ../packages` is present and ignored by git.
