@@ -1,5 +1,13 @@
 # Operations History
 
+## 2026-06-28 08:48:19 — Codex
+Added the Langfuse end-user guide requested for the NovaMonitor docs set. The guide covers access, seeded admin login reference, first-use steps, public ingestion test trace, ClickHouse/MinIO verification, SDK configuration, and user-facing notes.
+
+Files touched:
+- `/adapt/platform/novaops/novamonitor/langfuse/docs/user_guide.md`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+
 ## 2026-06-28 08:36:30 — Codex
 Switched Langfuse blob storage from Cloudflare R2 to local MinIO because R2 remains blocked by Cloudflare account error `10042`. Created MinIO bucket `langfuse`, created a dedicated MinIO user `langfuse` with bucket-scoped read/write policy, updated Langfuse S3 event/media env keys to `http://127.0.0.1:9100` with path-style access, restarted `langfuse-web.service` and `langfuse-worker.service`, and verified live ingestion. Receipt event `minio-receipt-20260628083439-4e54a48a` returned ingestion `207` with success, produced MinIO object `lf/langfuse/events/proj-0f8189d91512bdaa9018aabd/trace/minio-receipt-20260628083439-4e54a48a/minio-receipt-20260628083439-4e54a48a-event.json`, and appeared in ClickHouse as `MinIO receipt trace`. Wrote operator docs under `/adapt/platform/novaops/novamonitor/langfuse/docs`.
 

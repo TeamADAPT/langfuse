@@ -1,5 +1,13 @@
 # Decisions Log
 
+## 2026-06-28 08:48:19 — Codex
+Decision recorded: Add a separate user-facing guide under the NovaMonitor Langfuse docs instead of mixing end-user onboarding with the admin guide.
+
+Files touched:
+- `/adapt/platform/novaops/novamonitor/langfuse/docs/user_guide.md`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+
 ## 2026-06-28 08:36:30 — Codex
 Decision recorded: Use local MinIO as the active Langfuse object store while Cloudflare R2 is unavailable. Use a dedicated bucket `langfuse` and dedicated MinIO user `langfuse` instead of MinIO root credentials. Keep the endpoint loopback-only at `http://127.0.0.1:9100`, set S3 path-style mode, and document admin operations in `/adapt/platform/novaops/novamonitor/langfuse/docs`.
 
