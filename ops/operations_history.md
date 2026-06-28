@@ -1,5 +1,17 @@
 # Operations History
 
+## 2026-06-28 07:07:18 — Codex
+Prepared Langfuse runtime secrets and database resources. Backed up `/adapt/secrets/.env` and `/adapt/secrets/db.env`, wrote Langfuse env blocks, created the `langfuse` Postgres role/database, created the `langfuse` ClickHouse database/user, and verified Postgres, ClickHouse native/HTTP, and Redis connectivity from user `x`.
+
+Files touched:
+- `/adapt/secrets/.env`
+- `/adapt/secrets/db.env`
+- `/adapt/secrets/.env.bak-langfuse-*`
+- `/adapt/secrets/db.env.bak-langfuse-*`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+- `ops/in_progress/langfuse-production-systemd-install/task.md`
+
 ## 2026-06-28 07:03:58 — Codex
 Received approval for the Langfuse production systemd install plan and updated the reverse proxy plan from Caddy to nginx, with Cloudflare Tunnel fallback credentials located at `/adapt/secrets/m2.env`.
 
