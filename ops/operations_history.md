@@ -1,5 +1,21 @@
 # Operations History
 
+## 2026-06-28 07:15:23 — Codex
+Installed Node.js 24.18.0, nginx 1.24.0, workspace dependencies, and `/usr/local/bin/migrate` with ClickHouse support. Attempted R2 verification and received Cloudflare API error `10042` indicating R2 must be enabled in the Cloudflare dashboard. Attempted web build; raw checkout Turbopack resolution required a local `web/packages -> ../packages` shim, added as an ignored artifact.
+
+Files touched:
+- `/etc/apt/sources.list.d/nodesource.list`
+- `/usr/bin/node`
+- `/usr/sbin/nginx`
+- `/usr/local/bin/migrate`
+- `/adapt/secrets/.env`
+- `/adapt/secrets/.env.bak-langfuse-*`
+- `web/packages`
+- `.gitignore`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+- `ops/in_progress/langfuse-production-systemd-install/task.md`
+
 ## 2026-06-28 07:07:18 — Codex
 Prepared Langfuse runtime secrets and database resources. Backed up `/adapt/secrets/.env` and `/adapt/secrets/db.env`, wrote Langfuse env blocks, created the `langfuse` Postgres role/database, created the `langfuse` ClickHouse database/user, and verified Postgres, ClickHouse native/HTTP, and Redis connectivity from user `x`.
 

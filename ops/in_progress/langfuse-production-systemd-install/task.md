@@ -15,3 +15,6 @@ Current status:
 - Reverse proxy target is nginx.
 - Cloudflare Tunnel credentials may be used from `/adapt/secrets/m2.env` if no local TLS certificate/key is available.
 - Runtime secrets and dedicated Postgres/ClickHouse resources are prepared and connectivity has been verified from user `x`.
+- Node.js 24, nginx, dependencies, and ClickHouse migrate CLI are installed.
+- R2 verification is blocked by Cloudflare API error `10042` until R2 is enabled for the account.
+- Local Turbopack build shim `web/packages -> ../packages` is present and ignored by git.

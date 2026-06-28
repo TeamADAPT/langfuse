@@ -1,5 +1,15 @@
 # Decisions Log
 
+## 2026-06-28 07:15:23 — Codex
+Decision recorded: Keep the raw-checkout Turbopack layout shim `web/packages -> ../packages` as an ignored local artifact instead of changing production source resolution. R2 bucket creation remains blocked by Cloudflare account state until R2 is enabled in the dashboard.
+
+Files touched:
+- `web/packages`
+- `.gitignore`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+- `ops/in_progress/langfuse-production-systemd-install/task.md`
+
 ## 2026-06-28 07:07:18 — Codex
 Decision recorded: Use dedicated `langfuse` Postgres and ClickHouse users/databases, bind Langfuse to Redis on `127.0.0.1:6379`, and set `/adapt/secrets` permissions to `root:x` so the systemd runtime user can read the required env files without exposing them world-wide.
 

@@ -84,6 +84,10 @@ node_modules
 web/test-results/*
 .codex-artifacts/
 
+# Local production build shim for raw checkouts; Turbopack resolves
+# web/packages/shared/src during standalone builds.
+web/packages
+
 # Local DeepSec workspace and generated scan state
 .deepsec/
 
