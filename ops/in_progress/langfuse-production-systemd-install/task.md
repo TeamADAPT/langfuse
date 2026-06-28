@@ -11,6 +11,6 @@ Scope:
 - Verify with live running-system receipts.
 
 Current status:
-- Planning only.
-- Runtime changes are blocked until `plans/langfuse-production-systemd-install.md` is approved.
-
+- Approved for execution.
+- Reverse proxy target is nginx.
+- Cloudflare Tunnel credentials may be used from `/adapt/secrets/m2.env` if no local TLS certificate/key is available.

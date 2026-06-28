@@ -1,5 +1,14 @@
 # Decisions Log
 
+## 2026-06-28 07:03:58 — Codex
+Decision recorded: Use nginx as the reverse proxy for `langfuse.adaptdev.ai`; if no local TLS certificate/key can be found, use Cloudflare Tunnel credentials from `/adapt/secrets/m2.env` instead of blocking on local certificate material.
+
+Files touched:
+- `plans/langfuse-production-systemd-install.md`
+- `ops/operations_history.md`
+- `ops/decisions.log`
+- `ops/in_progress/langfuse-production-systemd-install/task.md`
+
 ## 2026-06-28 06:39:59 — Codex
 Decision recorded: Use per-command Git author identity for this commit instead of writing global Git config.
 

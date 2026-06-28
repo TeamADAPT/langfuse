@@ -2,6 +2,11 @@
 
 ## 2026-06-28 06:38:57 — Codex
 
+## Approval Update
+- Approved on 2026-06-28.
+- Reverse proxy changed from Caddy to nginx.
+- Cloudflare Tunnel credentials may be sourced from `/adapt/secrets/m2.env` if direct nginx TLS termination is not possible.
+
 ## Objective
 Install Langfuse production single-node on this host for `https://langfuse.adaptdev.ai`, managed by systemd, without Docker or Python virtual environments.
 
@@ -20,8 +25,10 @@ Install Langfuse production single-node on this host for `https://langfuse.adapt
 - No Langfuse systemd units exist yet.
 - No nginx or Caddy install was found.
 - No certificate/key for `langfuse.adaptdev.ai` was found under `/etc`.
+- No certificate/key for `langfuse.adaptdev.ai` was found under `/adapt`.
 - `/adapt/secrets/.env` exists but currently only exposes generic API variables when inspected by key name.
 - `/adapt/secrets/db.env` exists and contains shared infrastructure DB variables, including ClickHouse values, when inspected by key name.
+- `/adapt/secrets/m2.env` contains Cloudflare account and R2 credential variables when inspected by key name.
 
 ## External Inputs Still Needed
 These cannot be invented safely:
@@ -29,7 +36,7 @@ These cannot be invented safely:
 - Cloudflare R2 account ID or full S3 endpoint URL.
 - Cloudflare R2 access key ID.
 - Cloudflare R2 secret access key.
-- Origin TLS certificate path and private key path for `langfuse.adaptdev.ai`, unless approval is given to install Caddy and provision TLS through another route.
+- Origin TLS certificate path and private key path for `langfuse.adaptdev.ai`, unless Cloudflare Tunnel is used.
 
 Defaults I will use unless rejected:
 - Initial owner email: `admin@adaptdev.ai`.
@@ -39,7 +46,7 @@ Defaults I will use unless rejected:
 - Initial Langfuse API keys: generated locally and written only to `/adapt/secrets/.env`.
 - Internal web bind: `127.0.0.1:3030`.
 - Systemd service user/group: `x:x`, matching existing local production services.
-- Reverse proxy: Caddy with manual TLS certificate paths.
+- Reverse proxy: nginx. If no local certificate is available, use Cloudflare Tunnel with credentials from `/adapt/secrets/m2.env`.
 
 ## Implementation Steps After Approval
 1. Prepare runtime secret files.
@@ -87,9 +94,10 @@ Defaults I will use unless rejected:
    - Enable restart policies and journal logging.
 
 7. Install reverse proxy.
-   - Install Caddy if absent.
+   - Install nginx if absent.
    - Configure `langfuse.adaptdev.ai` to reverse proxy to `127.0.0.1:3030`.
-   - Use manually supplied origin certificate and private key paths.
+   - Use manually supplied origin certificate and private key paths if present.
+   - If local TLS material is unavailable, install Cloudflare Tunnel and expose nginx/http through the tunnel using `/adapt/secrets/m2.env`.
 
 8. Verify live receipts.
    - `systemctl status langfuse.target langfuse-web langfuse-worker`.
@@ -114,4 +122,3 @@ Defaults I will use unless rejected:
 - A live ingestion request succeeds and appears in ClickHouse.
 - `ops/operations_history.md`, `ops/decisions.log`, and task `completion_report.md` are updated.
 - Changes are committed and pushed from branch `working`.
-
