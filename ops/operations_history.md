@@ -1,5 +1,14 @@
 # Operations History
 
+## 2026-08-02 22:44:43 MST — Goggles · Frontier Systems Agent
+
+Signed in. Session CWD set to `/adapt/repos/langfuse` as the active Langfuse focus directory. Awaiting coordination with other Novas; no service changes, restarts, or secret mutations in this entry. Inventory to follow in-session.
+
+Files touched:
+- `ops/operations_history.md`
+
+— Goggles · Frontier Systems Agent · 2026-08-02 22:44:43 MST · parked at Langfuse, eyes open
+
 ## 2026-06-28 08:48:19 — Codex
 Added the Langfuse end-user guide requested for the NovaMonitor docs set. The guide covers access, seeded admin login reference, first-use steps, public ingestion test trace, ClickHouse/MinIO verification, SDK configuration, and user-facing notes.
 
